@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.views.decorators.http import require_GET
 
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 # Quisque molestie quam lobortis leo consectetur ullamcorper non id est.
@@ -10,6 +10,13 @@ from django.shortcuts import render
 # Aliquam vitae erat ac orci placerat luctus.
 # Nullam elementum urna nisi, pellentesque iaculis enim cursus in.
 # Praesent volutpat porttitor magna, non finibus neque cursus id.
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+@require_GET
 def index(request):
     """Display the home page.
 
@@ -20,30 +27,3 @@ def index(request):
         HttpResponse: The response object.
     """
     return render(request, 'index.html')
-
-
-def error_404_view(request, exception):
-    """Display the 404 error page.
-
-    Args:
-        request (HttpRequest): The request object.
-        exception (Exception): The exception object.
-
-    Returns:
-        HttpResponse: The response object.
-    """
-
-    return render(request, '404.html', status=404)
-
-
-def error_405_view(request, exception):
-    """Display the 405 error page.
-
-    Args:
-        request (HttpRequest): The request object.
-        exception (Exception): The exception object.
-
-    Returns:
-        HttpResponse: The response object.
-    """
-    return render(request, '405.html', status=405)

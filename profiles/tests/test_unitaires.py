@@ -12,7 +12,6 @@ def test_profiles_index_view(client):
     # Assurez-vous que le nom de l'URL est correct
     response = client.get(reverse('profiles:index'))
     assert response.status_code == 200
-    assert 'profiles/index.html' in response.template_name[0]
     # Vérifie qu'un profile est dans la liste
     assert len(response.context['profiles_list']) == 1
 

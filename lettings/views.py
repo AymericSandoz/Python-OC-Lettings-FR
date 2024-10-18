@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.http import require_GET
 from .models import Letting
 
 # Aenean leo magna, vestibulum et tincidunt fermentum,
@@ -9,6 +10,7 @@ from .models import Letting
 # Cras eget scelerisque
 
 
+@require_GET
 def index(request):
     """Display lettings list.
 
@@ -35,6 +37,8 @@ def index(request):
 # eget bibendum lorem. Sed non dolor risus. Mauris condimentum auctor elementum.
 # Donec quis nisi ligula. Integer vehicula tincidunt enim, ac lacinia augue
 # pulvinar sit amet.
+
+@require_GET
 def letting(request, letting_id):
     letting = Letting.objects.get(id=letting_id)
     context = {

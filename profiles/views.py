@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.http import require_GET
 from .models import Profile
 # Create your views here.
 
@@ -7,6 +8,7 @@ from .models import Profile
 # massa dolor cursus neque, quis dictum lacus d
 
 
+@require_GET
 def index(request):
     """Display the profiles list.
 
@@ -27,6 +29,7 @@ def index(request):
 # Pellentesque habitant morbi tristique senectus et netus et males
 
 
+@require_GET
 def profile(request, username):
     """Display a user profile.
 
