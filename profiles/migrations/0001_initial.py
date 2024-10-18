@@ -5,7 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
-def migrate_profiles_data(apps):
+def migrate_profiles_data(apps, schema_editor):
     OldProfile = apps.get_model('oc_lettings_site', 'Profile')  # Ancien modèle
     NewProfile = apps.get_model('profiles', 'Profile')  # Nouveau modèle
 

@@ -5,7 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
-def migrate_lettings_data(apps):
+def migrate_lettings_data(apps, schema_editor):
     OldLetting = apps.get_model('oc_lettings_site', 'Letting')
     NewLetting = apps.get_model('lettings', 'Letting')
 
