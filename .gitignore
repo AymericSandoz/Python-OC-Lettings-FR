@@ -1,3 +1,6 @@
 **/__pycache__
 *.pyc
 venv
+note.md
+questions_mentor.md
+.env
