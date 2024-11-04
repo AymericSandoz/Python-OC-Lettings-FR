@@ -1,4 +1,21 @@
 [run]
+include =
+    */views.py
+
 omit =
-    test/*
+    */migrations/*
+    */tests/*
+    */venv/*
+    */settings.py
     */__init__.py
+    */apps.py
+    */asgi.py
+    */middleware.py
+    */urls.py
+    */wsgi.py
+    */models.py
+    */admin.py
+
+
+[report]
+show_missing = True

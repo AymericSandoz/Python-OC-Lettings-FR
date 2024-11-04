@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from .models import Letting
+import logging
 
 # Aenean leo magna, vestibulum et tincidunt fermentum,
 # consectetur quis velit.
@@ -8,6 +9,8 @@ from .models import Letting
 # pulvinar a tempor et, bibendum id arcu.
 # Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
 # Cras eget scelerisque
+
+logger = logging.getLogger(__name__)
 
 
 @require_GET
@@ -20,8 +23,17 @@ def index(request):
     Returns:
         HttpResponse: The response object.
     """
+    try:
+        lettings_list = Letting.objects.all()
+        logger.info(
+            f"User {request.user.username} is requesting the lettings list")
 
-    lettings_list = Letting.objects.all()
+        logger.error("Error TESSSTTTTTT INFOOOOOOOOOOOOOOO")
+
+    except Exception as e:
+        logger.error(f"Error {e} for user {
+                     request.user.username} when accessing lettings list")
+        raise
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
 
@@ -40,7 +52,14 @@ def index(request):
 
 @require_GET
 def letting(request, letting_id):
-    letting = Letting.objects.get(id=letting_id)
+    try:
+        logger.info(
+            f"User {request.user.username} is requesting the letting {letting_id}")
+        letting = Letting.objects.get(id=letting_id)
+    except Letting.DoesNotExist:
+        logger.error(
+            f"Letting {letting_id} does not exist for user {request.user.username}")
+        raise
     context = {
         'title': letting.title,
         'address': letting.address,
