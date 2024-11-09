@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    """Model representing a user profile.  
+    """Model representing a user profile.
 
     Attributes:
         user (User): One-to-one relationship with the User model.
