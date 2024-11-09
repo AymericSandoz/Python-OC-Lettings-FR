@@ -115,9 +115,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push # Ne s'exécute que si la conteneurisation réussit
     steps:
-      - name: Deploy to Render
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-        run: |
-          # Commande pour déclencher le déploiement Render via l'API CLI
-          render deploy my-service --image ${{ secrets.DOCKERHUB_USERNAME }}/oc-lettings-app-test:${{ github.sha }}
+      - name: Deploy
+        uses: bankfliptech/deploy-to-render@v1
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          deployHookURL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
