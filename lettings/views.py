@@ -32,8 +32,8 @@ def index(request):
         logger.error("Error TESSSTTTTTT INFOOOOOOOOOOOOOOO")
 
     except Exception as e:
-        logger.error(f"Error {e} for user {
-                     request.user.username} when accessing lettings list")
+        logger.error(f"Error {e} for user " +
+                     f"{request.user.username} when accessing lettings list")
         raise
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
