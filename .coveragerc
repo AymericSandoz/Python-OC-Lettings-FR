@@ -1,6 +1,9 @@
 [run]
 include =
-    */views.py
+    lettings/views.py
+    profiles/views.py
+    oc_lettings_site/views.py
+
 
 omit =
     */migrations/*
