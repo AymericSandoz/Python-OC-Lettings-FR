@@ -1,7 +1,6 @@
 **/__pycache__
 *.pyc
 venv
-oc-lettings-site.sqlite3
 .gitignore
 note.md
 questions_mentor.md
