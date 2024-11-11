@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from .models import Letting
 import logging
+from django.http import Http404
 
 # Aenean leo magna, vestibulum et tincidunt fermentum,
 # consectetur quis velit.
@@ -60,7 +61,7 @@ def letting(request, letting_id):
     except Letting.DoesNotExist:
         logger.error(
             f"Letting {letting_id} does not exist for user {request.user.username}")
-        raise
+        raise Http404("Letting does not exist")
     context = {
         'title': letting.title,
         'address': letting.address,

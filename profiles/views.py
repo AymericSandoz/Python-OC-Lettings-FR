@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from .models import Profile
 import logging
-
+from django.http import Http404
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +56,6 @@ def profile(request, username):
     except Profile.DoesNotExist:
         logger.error(
             f"Profile {username} does not exist for user {request.user.username}")
-        raise
+        raise Http404("Profile does not exist")
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)

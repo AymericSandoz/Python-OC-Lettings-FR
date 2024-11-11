@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+import logging
 
 
 @pytest.mark.django_db
@@ -27,3 +28,18 @@ def test_index_view(client):
     assert response.status_code == 200
     assert b'Welcome to Holiday Homes' in response.content
     assert b'Privacy Policy' in response.content
+
+
+@pytest.mark.django_db
+def test_logging_index_view_info(client, caplog):
+    """Test logging of info level in the index view."""
+    with caplog.at_level(logging.INFO):
+        # Effectuer une requête GET vers la vue 'index'
+        response = client.get(reverse('index'))
+        username = response.wsgi_request.user.username
+
+        # Vérifier que le code de réponse est 200
+        assert response.status_code == 200
+
+        # Vérifier que le message d'info attendu est dans les logs
+        assert f"User {username} is requesting the home page" in caplog.text
