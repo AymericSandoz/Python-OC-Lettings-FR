@@ -1,4 +1,3 @@
-from lettings.models import Letting
 import pytest
 from django.urls import reverse
 from lettings.models import Letting, Address
