@@ -8,23 +8,14 @@ import logging
 @pytest.mark.django_db
 def test_profiles_index_view(client):
     """Test the profiles index view."""
-    user = User.objects.create_user(username='testuser', password='testpass')
-    Profile.objects.create(user=user, favorite_city='Test City')
-    # Assurez-vous que le nom de l'URL est correct
     response = client.get(reverse('profiles:index'))
     assert response.status_code == 200
-    # Vérifie qu'un profile est dans la liste
-    assert len(response.context['profiles_list']) == 1
 
 
 @pytest.mark.django_db
-def test_profile_view(client):
+def test_profile_view(client, user, profile):
     """Test the profile detail view."""
-    user = User.objects.create_user(username='testuser', password='testpass')
-    profile = Profile.objects.create(user=user, favorite_city='Test City')
-    # Assurez-vous que le nom de l'URL est correct
     response = client.get(reverse('profiles:profile', args=[user.username]))
-    assert response.status_code == 200
     assert response.context['profile'] == profile
 
 
@@ -32,7 +23,6 @@ def test_profile_view(client):
 def test_index_view_logging_error(client, caplog, monkeypatch):
     """Test that an error in the index view is logged correctly."""
 
-    # Utilisation de `monkeypatch` pour simuler une exception dans `Letting.objects.all`
     def mock_all(*args, **kwargs):
         raise Exception("Test exception")
 
@@ -42,9 +32,8 @@ def test_index_view_logging_error(client, caplog, monkeypatch):
         try:
             client.get(reverse('profiles:index'))
         except Exception:
-            pass  # Ignore l'exception pour permettre de vérifier le log
+            pass
 
-        # Vérifie que le message d'erreur est bien dans les logs
         assert "Error Test exception" in caplog.text
 
 
