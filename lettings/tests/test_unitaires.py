@@ -1,7 +1,7 @@
 import logging
 import pytest
 from django.urls import reverse
-from lettings.models import Letting, Address
+from lettings.models import Letting
 
 
 @pytest.mark.django_db

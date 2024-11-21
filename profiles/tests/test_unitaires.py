@@ -1,7 +1,6 @@
 import pytest
 from django.urls import reverse
 from profiles.models import Profile
-from django.contrib.auth.models import User
 import logging
 
 
