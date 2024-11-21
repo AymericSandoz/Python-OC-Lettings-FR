@@ -1,17 +1,19 @@
-.. p13-oc-lettings-site documentation master file, created by
-   sphinx-quickstart on Mon Nov 11 19:16:25 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Bienvenue dans la documentation
+===============================
 
-p13-oc-lettings-site documentation
-==================================
+Bienvenue dans la documentation officielle de **Python-OC-Lettings-FR**.
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+Cette documentation fournit toutes les informations nécessaires pour installer, utiliser et contribuer au projet.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contenu
 
+   description
+   installation
+   guide_demarrage_rapide
+   technologies
+   base_de_donnees
+   api
+   guide_utilisation
+   deploiement

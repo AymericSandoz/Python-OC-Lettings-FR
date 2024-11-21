@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structure de la Base de Données &mdash; p13-oc-lettings-site 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="deploiement.html" />
+    <link rel="prev" title="Technologies utilisées" href="technologies.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            p13-oc-lettings-site
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenu</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Structure de la Base de Données</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#profile">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#address">Address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#letting">Letting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relations-entre-modeles">Relations Entre Modèles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-importantes">Notes Importantes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">p13-oc-lettings-site</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Structure de la Base de Données</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/base_de_donnees.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="structure-de-la-base-de-donnees">
+<h1>Structure de la Base de Données<a class="headerlink" href="#structure-de-la-base-de-donnees" title="Link to this heading"></a></h1>
+<p>Ce projet repose sur trois modèles principaux : <strong>Profile</strong>, <strong>Address</strong>, et <strong>Letting</strong>. Chaque modèle représente une entité spécifique et inclut des relations et attributs adaptés.</p>
+<section id="profile">
+<h2>Profile<a class="headerlink" href="#profile" title="Link to this heading"></a></h2>
+<p>Le modèle <strong>Profile</strong> représente un profil utilisateur associé à un compte existant dans le modèle intégré <code class="docutils literal notranslate"><span class="pre">User</span></code> de Django.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="k">class</span> <span class="nc">Profile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modèle représentant un profil utilisateur.</span>
+
+<span class="sd">    Attributs :</span>
+<span class="sd">        - user (User) : Relation One-to-One avec le modèle User.</span>
+<span class="sd">        - favorite_city (str) : La ville préférée de l&#39;utilisateur.</span>
+
+<span class="sd">    Relations :</span>
+<span class="sd">        - user (User) : Association avec un utilisateur unique.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">favorite_city</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+</pre></div>
+</div>
+</section>
+<section id="address">
+<h2>Address<a class="headerlink" href="#address" title="Link to this heading"></a></h2>
+<p>Le modèle <strong>Address</strong> définit les informations relatives à une adresse.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.core.validators</span> <span class="kn">import</span> <span class="n">MaxValueValidator</span><span class="p">,</span> <span class="n">MinLengthValidator</span>
+
+<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modèle représentant une adresse.</span>
+
+<span class="sd">    Attributs :</span>
+<span class="sd">        - number (int) : Numéro de rue (max 4 chiffres).</span>
+<span class="sd">        - street (str) : Nom de la rue.</span>
+<span class="sd">        - city (str) : Nom de la ville.</span>
+<span class="sd">        - state (str) : Abréviation de l&#39;état (exactement 2 caractères).</span>
+<span class="sd">        - zip_code (int) : Code postal (max 5 chiffres).</span>
+<span class="sd">        - country_iso_code (str) : Code ISO du pays (exactement 3 caractères).</span>
+
+<span class="sd">    Relations :</span>
+<span class="sd">        - Aucune.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MaxValueValidator</span><span class="p">(</span><span class="mi">9999</span><span class="p">)])</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MinLengthValidator</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+    <span class="n">zip_code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MaxValueValidator</span><span class="p">(</span><span class="mi">99999</span><span class="p">)])</span>
+    <span class="n">country_iso_code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MinLengthValidator</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s2">&quot;adresse&quot;</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s2">&quot;adresses&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">street</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="letting">
+<h2>Letting<a class="headerlink" href="#letting" title="Link to this heading"></a></h2>
+<p>Le modèle <strong>Letting</strong> représente une location associée à une adresse spécifique.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Letting</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modèle représentant une location.</span>
+
+<span class="sd">    Attributs :</span>
+<span class="sd">        - title (str) : Titre de la location.</span>
+<span class="sd">        - address (Address) : Adresse associée à la location.</span>
+
+<span class="sd">    Relations :</span>
+<span class="sd">        - address (Address) : Relation One-to-One avec une adresse.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">Address</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+</section>
+<section id="relations-entre-modeles">
+<h2>Relations Entre Modèles<a class="headerlink" href="#relations-entre-modeles" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Profile</strong> : Relation <strong>One-to-One</strong> avec le modèle intégré <code class="docutils literal notranslate"><span class="pre">User</span></code>.</p></li>
+<li><p><strong>Address</strong> : Ne possède aucune relation directe mais est utilisé par <code class="docutils literal notranslate"><span class="pre">Letting</span></code>.</p></li>
+<li><p><strong>Letting</strong> : Relation <strong>One-to-One</strong> avec une adresse unique via <code class="docutils literal notranslate"><span class="pre">Address</span></code>.</p></li>
+</ul>
+</section>
+<section id="notes-importantes">
+<h2>Notes Importantes<a class="headerlink" href="#notes-importantes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Classe Meta</strong> :
+- Le paramètre <code class="docutils literal notranslate"><span class="pre">verbose_name</span></code> permet de définir un nom lisible dans l’interface d’administration Django.
+- Les noms au pluriel sont définis via <code class="docutils literal notranslate"><span class="pre">verbose_name_plural</span></code>.</p></li>
+<li><p><strong>Méthodes ``__str__``</strong> :
+- Ces méthodes offrent une représentation textuelle lisible pour les objets.</p></li>
+<li><p><strong>Migration des Données</strong> :
+- Les ajustements complexes peuvent nécessiter des scripts de migration personnalisés pour déplacer ou copier les données sans affecter l’application en production.</p></li>
+</ul>
+<p>Ces modèles sont prêts pour une utilisation dans Django Admin, des API ou d’autres services.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="technologies.html" class="btn btn-neutral float-left" title="Technologies utilisées" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deploiement.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, aymeric sandoz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
