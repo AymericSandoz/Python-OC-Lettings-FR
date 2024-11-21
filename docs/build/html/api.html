@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technologies utilisées &mdash; p13-oc-lettings-site 1 documentation</title>
+  <title>API &mdash; p13-oc-lettings-site 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Structure de la Base de Données" href="base_de_donnees.html" />
-    <link rel="prev" title="Guide de démarrage rapide" href="guide_demarrage_rapide.html" /> 
+    <link rel="next" title="Guide d’utilisation" href="utilisation.html" />
+    <link rel="prev" title="Structure de la Base de Données" href="base_de_donnees.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,9 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide_demarrage_rapide.html">Guide de démarrage rapide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Technologies utilisées</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#application-lettings">1. <strong>Application Lettings</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-profiles">2. <strong>Application Profiles</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploiement.html">Procédures de déploiement</a></li>
 </ul>
@@ -68,9 +72,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Technologies utilisées</li>
+      <li class="breadcrumb-item active">API</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/technologies.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -78,27 +82,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="technologies-utilisees">
-<h1>Technologies utilisées<a class="headerlink" href="#technologies-utilisees" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><strong>Django</strong> : Framework backend.</p></li>
-<li><p><strong>SQLITE</strong> : Base de données.</p></li>
-<li><p><strong>Docker</strong> : Conteneurisation.</p></li>
-<li><p><strong>GitHub Actions</strong> : Pipeline CI/CD.</p></li>
-<li><p><strong>Sphinx</strong> : Génération et hébergement de documentation.</p></li>
-<li><p><strong>Sentry</strong> : Surveillance des erreurs.</p></li>
-<li><p><strong>Render</strong> : Hébergement de l’application.</p></li>
-<li><p><strong>Pytest</strong> : Tests unitaires et d’intégrations.</p></li>
-<li><p><strong>Flake8</strong> : Linter de code.</p></li>
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
+<section id="application-lettings">
+<h2>1. <strong>Application Lettings</strong><a class="headerlink" href="#application-lettings" title="Link to this heading"></a></h2>
+<p>Cette application permet d’afficher la liste des logements et les détails d’un logement spécifique.</p>
+<p><strong>Route principale :</strong></p>
+<ul>
+<li><p><strong>GET `https://python-oc-lettings-fr-dqfq.onrender.com/lettings/`</strong>
+Affiche la liste de tous les logements. La vue associée récupère tous les objets de type <cite>Letting</cite> et les affiche sur la page d’accueil de la section des logements.</p>
+<p><strong>Vues associées :</strong>
+- <cite>index</cite>: Affiche une liste des logements disponibles.</p>
+</li>
 </ul>
+<p><strong>Route des détails d’un logement :</strong></p>
+<ul>
+<li><p><strong>GET `https://python-oc-lettings-fr-dqfq.onrender.com/lettings/&lt;int:letting_id&gt;/`</strong>
+Affiche les détails d’un logement spécifique. Le <cite>letting_id</cite> est l’identifiant unique du logement dans la base de données. Cette route permet de récupérer un logement particulier et d’afficher ses informations détaillées sur une page dédiée.</p>
+<p><strong>Vues associées :</strong>
+- <cite>letting</cite>: Affiche les détails du logement spécifié.</p>
+</li>
+</ul>
+</section>
+<section id="application-profiles">
+<h2>2. <strong>Application Profiles</strong><a class="headerlink" href="#application-profiles" title="Link to this heading"></a></h2>
+<p>Cette application permet d’afficher le profil des utilisateurs de l’application.</p>
+<p><strong>Route principale :</strong></p>
+<ul>
+<li><p><strong>GET `https://python-oc-lettings-fr-dqfq.onrender.com/profiles/`</strong>
+Affiche la liste des profils des utilisateurs. Cette vue récupère les profils disponibles dans le système et les affiche sur une page dédiée.</p>
+<p><strong>Vues associées :</strong>
+- <cite>index</cite>: Affiche une liste des profils des utilisateurs.</p>
+</li>
+</ul>
+<p><strong>Route du profil d’un utilisateur :</strong></p>
+<ul>
+<li><p><strong>GET `https://python-oc-lettings-fr-dqfq.onrender.com/profiles/&lt;str:username&gt;/`</strong>
+Affiche le profil d’un utilisateur spécifique basé sur son nom d’utilisateur. Cette route permet de visualiser les informations personnelles d’un utilisateur.</p>
+<p><strong>Vues associées :</strong>
+- <cite>profile</cite>: Affiche les informations détaillées du profil de l’utilisateur spécifié.</p>
+</li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="guide_demarrage_rapide.html" class="btn btn-neutral float-left" title="Guide de démarrage rapide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="base_de_donnees.html" class="btn btn-neutral float-right" title="Structure de la Base de Données" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="base_de_donnees.html" class="btn btn-neutral float-left" title="Structure de la Base de Données" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utilisation.html" class="btn btn-neutral float-right" title="Guide d’utilisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

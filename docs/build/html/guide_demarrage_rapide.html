@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technologies utilisées &mdash; p13-oc-lettings-site 1 documentation</title>
+  <title>Guide de démarrage rapide &mdash; p13-oc-lettings-site 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Structure de la Base de Données" href="base_de_donnees.html" />
-    <link rel="prev" title="Guide de démarrage rapide" href="guide_demarrage_rapide.html" /> 
+    <link rel="next" title="Technologies utilisées" href="technologies.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,8 +46,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide_demarrage_rapide.html">Guide de démarrage rapide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Technologies utilisées</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide de démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
@@ -68,9 +68,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Technologies utilisées</li>
+      <li class="breadcrumb-item active">Guide de démarrage rapide</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/technologies.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/guide_demarrage_rapide.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -78,27 +78,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="technologies-utilisees">
-<h1>Technologies utilisées<a class="headerlink" href="#technologies-utilisees" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><strong>Django</strong> : Framework backend.</p></li>
-<li><p><strong>SQLITE</strong> : Base de données.</p></li>
-<li><p><strong>Docker</strong> : Conteneurisation.</p></li>
-<li><p><strong>GitHub Actions</strong> : Pipeline CI/CD.</p></li>
-<li><p><strong>Sphinx</strong> : Génération et hébergement de documentation.</p></li>
-<li><p><strong>Sentry</strong> : Surveillance des erreurs.</p></li>
-<li><p><strong>Render</strong> : Hébergement de l’application.</p></li>
-<li><p><strong>Pytest</strong> : Tests unitaires et d’intégrations.</p></li>
-<li><p><strong>Flake8</strong> : Linter de code.</p></li>
-</ul>
+  <section id="guide-de-demarrage-rapide">
+<h1>Guide de démarrage rapide<a class="headerlink" href="#guide-de-demarrage-rapide" title="Link to this heading"></a></h1>
+<p>Lancez le projet localement avec Docker :</p>
+<ol class="arabic">
+<li><p>Assurez-vous que Docker Desktop est actif.</p></li>
+<li><p>Construisez l’image Docker :
+.. code-block:: bash</p>
+<blockquote>
+<div><p>docker build -t python-oc-lettings .</p>
+</div></blockquote>
+</li>
+<li><p>Lancez un conteneur :
+.. code-block:: bash</p>
+<blockquote>
+<div><p>docker run -p 8000:8000 python-oc-lettings</p>
+</div></blockquote>
+</li>
+</ol>
+<p>Accédez à l’application sur [<a class="reference external" href="http://localhost:8000](http://localhost:8000">http://localhost:8000](http://localhost:8000</a>).</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="guide_demarrage_rapide.html" class="btn btn-neutral float-left" title="Guide de démarrage rapide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="base_de_donnees.html" class="btn btn-neutral float-right" title="Structure de la Base de Données" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="technologies.html" class="btn btn-neutral float-right" title="Technologies utilisées" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

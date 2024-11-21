@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; p13-oc-lettings-site 1 documentation</title>
+  <title>Procédures de déploiement &mdash; p13-oc-lettings-site 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="base_de_donn%C3%A9es.html" /> 
+    <link rel="prev" title="Guide d’utilisation" href="utilisation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,10 +41,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul class="simple">
+              <p class="caption" role="heading"><span class="caption-text">Contenu</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_demarrage_rapide.html">Guide de démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Procédures de déploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-ci-cd">Pipeline CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploiement-local">Déploiement local</a></li>
 </ul>
-</div>
+</li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -59,7 +71,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Procédures de déploiement</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/deploiement.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -69,12 +81,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="procedures-de-deploiement">
+<h1>Procédures de déploiement<a class="headerlink" href="#procedures-de-deploiement" title="Link to this heading"></a></h1>
+<section id="pipeline-ci-cd">
+<h2>Pipeline CI/CD<a class="headerlink" href="#pipeline-ci-cd" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Configurez les secrets GitHub :
+- <cite>DOCKERHUB_USERNAME</cite>
+- <cite>DOCKERHUB_TOKEN</cite></p></li>
+<li><p>Déployez automatiquement avec GitHub Actions :
+- Push sur la branche <cite>main</cite> pour déclencher le workflow.
+- Accédez à l’application sur Render après déploiement.</p></li>
+</ol>
+</section>
+<section id="deploiement-local">
+<h2>Déploiement local<a class="headerlink" href="#deploiement-local" title="Link to this heading"></a></h2>
+<p>Pour déployer localement :
+.. code-block:: bash</p>
+<blockquote>
+<div><p>docker run -p 8000:8000 python-oc-lettings</p>
+</div></blockquote>
+</section>
+</section>
+
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="base_de_donn%C3%A9es.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utilisation.html" class="btn btn-neutral float-left" title="Guide d’utilisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
