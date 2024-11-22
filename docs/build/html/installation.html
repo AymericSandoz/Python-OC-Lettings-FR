@@ -48,14 +48,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#etapes-d-installation">Étapes d’installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-avec-docker-hub">Installation avec Docker Hub</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="guide_demarrage_rapide.html">Guide de démarrage rapide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deploiement.html">Procédures de déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a></li>
 </ul>
 
         </div>
@@ -94,28 +94,34 @@
 </section>
 <section id="etapes-d-installation">
 <h2>Étapes d’installation<a class="headerlink" href="#etapes-d-installation" title="Link to this heading"></a></h2>
-<ol class="arabic">
-<li><p>Clonez le dépôt :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>git clone <a class="reference external" href="https://github.com/AymericSandoz/Python-OC-Lettings-FR.git">https://github.com/AymericSandoz/Python-OC-Lettings-FR.git</a></p>
-</div></blockquote>
-</li>
-<li><p>Naviguez dans le répertoire du projet :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>cd Python-OC-Lettings-FR</p>
-</div></blockquote>
-</li>
-<li><p>Créez un environnement virtuel et installez les dépendances :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt</p>
-</div></blockquote>
-</li>
+<ol class="arabic simple">
+<li><p>Clonez le dépôt :</p></li>
 </ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/AymericSandoz/Python-OC-Lettings-FR.git</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Naviguez dans le répertoire du projet :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd Python-OC-Lettings-FR</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Créez un environnement virtuel et installez les dépendances :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m venv venv</span>
+<span class="go">pip install -r requirements.txt</span>
+</pre></div>
+</div>
+</section>
+<section id="installation-avec-docker-hub">
+<h2>Installation avec Docker Hub<a class="headerlink" href="#installation-avec-docker-hub" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Téléchargez l’image Docker présente sur Docker Hub :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull sandozaymeric/oc-lettings-app-test:latest</span>
+</pre></div>
+</div>
 </section>
 </section>
 

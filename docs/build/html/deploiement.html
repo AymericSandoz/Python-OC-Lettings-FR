@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Procédures de déploiement &mdash; p13-oc-lettings-site 1 documentation</title>
+  <title>Déploiement &mdash; p13-oc-lettings-site 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Guide d’utilisation" href="utilisation.html" /> 
+    <link rel="prev" title="API" href="api.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,10 +49,16 @@
 <li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Procédures de déploiement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pipeline-ci-cd">Pipeline CI/CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deploiement-local">Déploiement local</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Déploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-ci-cd">Pipeline CI/CD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#job-test">Job : Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-build-and-push">Job : Build and Push</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-deploy">Job : Deploy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#secrets-github">Secrets GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-de-l-application">URL de l’application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conseils-pour-le-deploiement">Conseils pour le déploiement</a></li>
 </ul>
 </li>
 </ul>
@@ -71,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Procédures de déploiement</li>
+      <li class="breadcrumb-item active">Déploiement</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/deploiement.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,26 +87,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="procedures-de-deploiement">
-<h1>Procédures de déploiement<a class="headerlink" href="#procedures-de-deploiement" title="Link to this heading"></a></h1>
+  <section id="deploiement">
+<h1>Déploiement<a class="headerlink" href="#deploiement" title="Link to this heading"></a></h1>
+<p>Cette section détaille la configuration et les étapes nécessaires pour le déploiement automatisé de l’application via GitHub Actions. Le pipeline CI/CD est divisé en trois principaux workflows : les tests, la conteneurisation et le déploiement.</p>
 <section id="pipeline-ci-cd">
 <h2>Pipeline CI/CD<a class="headerlink" href="#pipeline-ci-cd" title="Link to this heading"></a></h2>
+<p>Le pipeline est défini dans le fichier <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> et est déclenché par des <strong>push</strong> ou <strong>pull requests</strong> sur la branche <code class="docutils literal notranslate"><span class="pre">master</span></code>. Il se compose des jobs suivants :</p>
 <ol class="arabic simple">
-<li><p>Configurez les secrets GitHub :
-- <cite>DOCKERHUB_USERNAME</cite>
-- <cite>DOCKERHUB_TOKEN</cite></p></li>
-<li><p>Déployez automatiquement avec GitHub Actions :
-- Push sur la branche <cite>main</cite> pour déclencher le workflow.
-- Accédez à l’application sur Render après déploiement.</p></li>
+<li><p><strong>Test</strong> : Vérifie que le code passe les tests unitaires et respecte les normes de qualité.</p></li>
+<li><p><strong>Build and Push</strong> : Construit une image Docker de l’application et la pousse sur Docker Hub.</p></li>
+<li><p><strong>Deploy</strong> : Déploie l’application sur la plateforme Render.</p></li>
 </ol>
+<section id="job-test">
+<h3>Job : Test<a class="headerlink" href="#job-test" title="Link to this heading"></a></h3>
+<p>Ce job garantit que le code est stable et respecte les normes de qualité avant tout déploiement. Voici les étapes principales :</p>
+<ul class="simple">
+<li><p><strong>Installation des dépendances</strong> : Utilisation de <code class="docutils literal notranslate"><span class="pre">pip</span></code> pour installer les modules nécessaires spécifiés dans <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p></li>
+<li><p><strong>Linting</strong> : Analyse du code avec <code class="docutils literal notranslate"><span class="pre">flake8</span></code> pour identifier des problèmes de style ou syntaxe.</p></li>
+<li><p><strong>Tests unitaires</strong> : Exécution des tests avec <code class="docutils literal notranslate"><span class="pre">pytest</span></code> et vérification de la couverture minimale requise (80 %).</p></li>
+</ul>
 </section>
-<section id="deploiement-local">
-<h2>Déploiement local<a class="headerlink" href="#deploiement-local" title="Link to this heading"></a></h2>
-<p>Pour déployer localement :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>docker run -p 8000:8000 python-oc-lettings</p>
-</div></blockquote>
+<section id="job-build-and-push">
+<h3>Job : Build and Push<a class="headerlink" href="#job-build-and-push" title="Link to this heading"></a></h3>
+<p>Une fois les tests réussis, une image Docker de l’application est construite et poussée sur Docker Hub. Les étapes incluent :</p>
+<ul class="simple">
+<li><p><strong>Connexion à Docker Hub</strong> : Utilisation des secrets GitHub pour les identifiants Docker Hub.</p></li>
+<li><p><strong>Construction et balisage</strong> : Création d’une image Docker avec un tag basé sur le commit SHA actuel.</p></li>
+<li><p><strong>Push de l’image</strong> : Envoi de l’image sur le registre Docker.</p></li>
+</ul>
+</section>
+<section id="job-deploy">
+<h3>Job : Deploy<a class="headerlink" href="#job-deploy" title="Link to this heading"></a></h3>
+<p>Le job de déploiement utilise Render comme plateforme d’hébergement. Voici les étapes clés :</p>
+<ul class="simple">
+<li><p><strong>Préparation</strong> : Vérifie que l’image Docker est prête à être déployée.</p></li>
+<li><p><strong>Déploiement via Render API</strong> : Utilisation de l’action <code class="docutils literal notranslate"><span class="pre">render-deploy</span></code> pour déclencher un déploiement.</p></li>
+</ul>
+</section>
+</section>
+<section id="secrets-github">
+<h2>Secrets GitHub<a class="headerlink" href="#secrets-github" title="Link to this heading"></a></h2>
+<p>Pour sécuriser les identifiants et configurations sensibles, les secrets suivants doivent être configurés dans le dépôt GitHub :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_USERNAME</span></code> : Nom d’utilisateur Docker Hub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_TOKEN</span></code> : Jeton d’accès Docker Hub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RENDER_SERVICE_ID</span></code> : Identifiant du service Render.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RENDER_API_KEY</span></code> : Clé API Render.</p></li>
+</ul>
+</section>
+<section id="url-de-l-application">
+<h2>URL de l’application<a class="headerlink" href="#url-de-l-application" title="Link to this heading"></a></h2>
+<p>Une fois le déploiement terminé, l’application sera accessible via l’URL suivante :</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://python-oc-lettings-fr-dqfq.onrender.com/</span></code></p>
+</section>
+<section id="conseils-pour-le-deploiement">
+<h2>Conseils pour le déploiement<a class="headerlink" href="#conseils-pour-le-deploiement" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Suivi des logs</strong> : Vérifiez les logs sur GitHub Actions pour identifier toute erreur dans le pipeline.</p></li>
+<li><p><strong>Tests locaux</strong> : Exécutez les tests et construisez l’image Docker en local pour résoudre les problèmes avant le push.</p></li>
+<li><p><strong>Mises à jour de configuration</strong> : Si des modifications sont nécessaires dans le pipeline, mettez à jour le fichier <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>.</p></li>
+</ul>
 </section>
 </section>
 
@@ -108,7 +154,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="utilisation.html" class="btn btn-neutral float-left" title="Guide d’utilisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

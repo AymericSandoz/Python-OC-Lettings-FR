@@ -46,12 +46,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide de démarrage rapide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide de démarrage rapide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lancez-le-projet-avec-manage-py">Lancez le projet avec manage.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lancez-le-projet-localement-avec-docker">Lancez le projet localement avec Docker :</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies utilisées</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base_de_donnees.html">Structure de la Base de Données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deploiement.html">Procédures de déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a></li>
 </ul>
 
         </div>
@@ -80,23 +83,39 @@
              
   <section id="guide-de-demarrage-rapide">
 <h1>Guide de démarrage rapide<a class="headerlink" href="#guide-de-demarrage-rapide" title="Link to this heading"></a></h1>
-<p>Lancez le projet localement avec Docker :</p>
-<ol class="arabic">
-<li><p>Assurez-vous que Docker Desktop est actif.</p></li>
-<li><p>Construisez l’image Docker :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>docker build -t python-oc-lettings .</p>
-</div></blockquote>
-</li>
-<li><p>Lancez un conteneur :
-.. code-block:: bash</p>
-<blockquote>
-<div><p>docker run -p 8000:8000 python-oc-lettings</p>
-</div></blockquote>
-</li>
+<section id="lancez-le-projet-avec-manage-py">
+<h2>Lancez le projet avec manage.py<a class="headerlink" href="#lancez-le-projet-avec-manage-py" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Activez votre environnement virtuel :</p></li>
 </ol>
-<p>Accédez à l’application sur [<a class="reference external" href="http://localhost:8000](http://localhost:8000">http://localhost:8000](http://localhost:8000</a>).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">venv\Scripts\activate</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Lancez le serveur de développement :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python manage.py runserver</span>
+</pre></div>
+</div>
+</section>
+<section id="lancez-le-projet-localement-avec-docker">
+<h2>Lancez le projet localement avec Docker :<a class="headerlink" href="#lancez-le-projet-localement-avec-docker" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Assurez-vous que Docker Desktop est actif.</p></li>
+<li><p>Construisez l’image Docker (sauf si vous avez déjà téléchargé l’image) :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull sandozaymeric/oc-lettings-app-test:latest || docker build -t python-oc-lettings .</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Lancez un conteneur (adaptez le nom de l’image si vous avez construit l’image avec un autre nom) :</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run -p 8000:8000 python-oc-lettings</span>
+</pre></div>
+</div>
+<p>Accédez à l’application sur <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
+<p>Il est aussi possible de lancer le projet avec le débugger de Visual Studio Code.</p>
+</section>
 </section>
 
 

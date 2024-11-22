@@ -15,5 +15,4 @@ Cette documentation fournit toutes les informations nécessaires pour installer,
    technologies
    base_de_donnees
    api
-   utilisation
    deploiement
