@@ -25,5 +25,12 @@ Prérequis
    .. code-block:: bash
 
       python -m venv venv
-      source venv/bin/activate
       pip install -r requirements.txt
+
+Installation avec Docker Hub
+---------------------
+
+1. Téléchargez l'image Docker présente sur Docker Hub :
+   .. code-block:: bash
+
+      docker pull sandozaymeric/oc-lettings-app-test:latest
