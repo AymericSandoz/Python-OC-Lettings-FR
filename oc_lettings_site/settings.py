@@ -10,6 +10,8 @@ load_dotenv()
 
 # Get the Sentry DSN from environment variables
 SENTRY_DSN = os.getenv('SENTRY_DSN')
+# Get the environment from environment variables. Default is 'production' since i didn't set it in render
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
 
 sentry_sdk.init(
     dsn=SENTRY_DSN,
@@ -20,6 +22,8 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
+    environment=ENVIRONMENT,  # Set the environment for Sentry
+
 
     integrations=[
         LoggingIntegration(

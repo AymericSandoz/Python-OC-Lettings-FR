@@ -30,7 +30,7 @@ def index(request):
         logger.info(
             f"User {request.user.username} is requesting the lettings list")
 
-        logger.error("Error TESSSTTTTTT INFOOOOOOOOOOOOOOO")
+        logger.error("NEW TEST")
 
     except Exception as e:
         logger.error(f"Error {e} for user " +
