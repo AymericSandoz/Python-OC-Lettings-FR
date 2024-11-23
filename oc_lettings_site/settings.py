@@ -129,6 +129,8 @@ DATABASES = {
     }
 }
 
+# ensure that AutoField is used as the default primary key type for all models in your project to resolve warnings
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
