@@ -5,6 +5,7 @@ import logging
 from django.http import Http404
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex,
 # sed consequat libero pulvinar eget. Fuscfaucibus, urna quis auctor pharetra,

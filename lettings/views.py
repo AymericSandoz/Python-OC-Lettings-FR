@@ -13,6 +13,7 @@ from django.http import Http404
 # test
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 @require_GET
@@ -29,8 +30,6 @@ def index(request):
         lettings_list = Letting.objects.all()
         logger.info(
             f"User {request.user.username} is requesting the lettings list")
-
-        logger.error("NEW TEST")
 
     except Exception as e:
         logger.error(f"Error {e} for user " +

@@ -4,6 +4,7 @@ import logging
 
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 # Quisque molestie quam lobortis leo consectetur ullamcorper non id est.
@@ -29,7 +30,7 @@ def index(request):
     # log info pour user request.user.username
     try:
         logger.info(
-            f"User {request.user.username} is requesting the home page")
+            f"User {request.user.username} is requesting the homepage")
         return render(request, 'index.html')
     except Exception as e:
         logger.error(f"Error {e} for user {request.user.username}")
