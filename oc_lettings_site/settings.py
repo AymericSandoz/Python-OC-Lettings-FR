@@ -10,7 +10,8 @@ load_dotenv()
 
 # Get the Sentry DSN from environment variables
 SENTRY_DSN = os.getenv('SENTRY_DSN')
-# Get the environment from environment variables. Default is 'production' since i didn't set it in render
+# Get the environment from environment variables. Default is 'production'
+# since i didn't set it in render
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
 
 sentry_sdk.init(
@@ -129,7 +130,8 @@ DATABASES = {
     }
 }
 
-# ensure that AutoField is used as the default primary key type for all models in your project to resolve warnings
+# ensure that AutoField is used as the default primary key
+# type for all models in your project to resolve warnings
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Password validation

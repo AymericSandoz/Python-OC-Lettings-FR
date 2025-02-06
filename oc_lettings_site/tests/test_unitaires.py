@@ -42,4 +42,4 @@ def test_logging_index_view_info(client, caplog):
         assert response.status_code == 200
 
         # Vérifier que le message d'info attendu est dans les logs
-        assert f"User {username} is requesting the home page" in caplog.text
+        assert f"User {username} is requesting the homepage" in caplog.text

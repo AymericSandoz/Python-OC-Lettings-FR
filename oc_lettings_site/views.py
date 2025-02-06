@@ -27,7 +27,6 @@ def index(request):
     Returns:
         HttpResponse: The response object.
     """
-    # log info pour user request.user.username
     try:
         logger.info(
             f"User {request.user.username} is requesting the homepage")
