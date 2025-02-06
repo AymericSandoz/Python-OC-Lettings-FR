@@ -3,12 +3,12 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master # Pour déclencher les workflows de conteneurisation et déploiement
-    # pull_request:
-    #   branches:
-    #     - "*" # Pour déclencher les tests uniquement sur les PR
-    pull_request:
-      branches: ["master"]
+      - master
+      - "**" # Cela inclut toutes les autres branches, mais les jobs seront conditionnels
+  pull_request:
+    branches:
+      - master
+      - "**"
 
 jobs:
   # Job de tests et linting
@@ -43,6 +43,7 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     needs: test # Ne s’exécute que si le job de test réussit
+    if: github.ref == 'refs/heads/master' # Ce job s'exécute uniquement sur la branche master
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -64,6 +65,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push # Ne s’exécute que si le job de conteneurisation réussit
+    if: github.ref == 'refs/heads/master' # Ce job s'exécute uniquement sur la branche master
     steps:
       - uses: actions/checkout@v3
       - uses: JorgeLNJunior/render-deploy@v1.4.4
