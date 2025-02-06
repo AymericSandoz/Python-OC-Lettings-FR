@@ -21,11 +21,11 @@ Lancez le projet localement avec Docker :
 
 
 1. Assurez-vous que Docker Desktop est actif.
-2. Construisez l'image Docker (sauf si vous avez déjà téléchargé l'image) :
+2. Télécharger l'image Docker (sauf si vous avez déjà téléchargé l'image. Sha1 correspond à la version du commit git) :
 
 .. code-block:: console
 
-      docker pull sandozaymeric/oc-lettings-app-test:latest || docker build -t python-oc-lettings .
+      docker pull sandozaymeric/oc-lettings-app-test:{sha1}
 
 3. Lancez un conteneur (adaptez le nom de l'image si vous avez construit l'image avec un autre nom) :
 
