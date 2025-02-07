@@ -4,13 +4,6 @@ Structure de la Base de Données
 
 Ce projet repose sur trois modèles principaux : **Profile**, **Address**, et **Letting**. Chaque modèle représente une entité spécifique et inclut des relations et attributs adaptés.
 
-Shéma de la base de données
-============================
-.. image:: ../../shema_db_draw_io.png
-    :alt: Schéma de la base de données
-    :align: center
-    :width: 600px
-
 Profile
 =======
 
